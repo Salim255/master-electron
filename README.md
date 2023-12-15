@@ -28,3 +28,19 @@
 - 4. Step 3 will open new devtool for our app Main process
 - to set up a breakpoint we use (debugger)
 - to set up a break in launch, we an run (electron --inspect-brk=5858 .)
+
+# Understanding Electron API:
+
+## Electron split in 3 main API
+
+- 1. Main Process API
+- 2. Renderer Process API
+- 3. Shared Modules API
+- This breakdown in main APIs is very important
+
+# APP module or APP instance,
+
+- This app module created automatically be electron
+- In this instance (APP) we control our app lifecycle (closing , opening ...)
+- The very first event of this app, is (Ready event) and this fire as soon as our app has been created, and it's ready to use
+- Also we can listen to the end of the app lifecycle by listening to before quite event
