@@ -52,4 +52,6 @@
 - Then once we created that BrowserWindow, we can load html file into that Chromium browser window , and that by calling (loadFile('html file to load'))
 - Showing window gracefully by using ( ready-to-show event ) this will hide the window to all it's content is loaded
 
-# Create child and parent electron window
+# Frameless BrowserWindow instances
+
+- Its useful to deal with window user interface(close bar...)

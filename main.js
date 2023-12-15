@@ -11,6 +11,7 @@ function createWindow() {
     height: 800,
     webPreferences: { nodeIntegration: true },
     backgroundColor: "red",
+    frame: false,
   });
 
   secondaryWindow = new BrowserWindow({
@@ -23,7 +24,6 @@ function createWindow() {
   });
 
   //Load index.html into the new BrowserWindow
-
   mainWindow.loadFile("./index.html");
   secondaryWindow.loadFile("./secondaryIndex.html");
   //Show mainWindow when it's ready to show
