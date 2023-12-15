@@ -10,11 +10,15 @@ function createWindow() {
     width: 1600,
     height: 800,
     webPreferences: { nodeIntegration: true },
+    backgroundColor: "red",
   });
 
   //Load index.html into the new BrowserWindow
+
   mainWindow.loadFile("./index.html");
 
+  //Show mainWindow when it's ready to show
+  // mainWindow.once("ready-to-show", mainWindow.shadow);
   //Open DevTools - Remove for PROD!
   mainWindow.openDevTools();
 
@@ -35,17 +39,11 @@ app.on("browser-window-focus", () => {
 });
 
 //Quit app
-app.on("before-quit", () => {
+/* app.on("before-quit", () => {
   console.log("App is quitting...");
-});
+}); */
 //Electron 'app' ready
-app.on("ready", () => {
-  console.log("App is ready, and running ...", colors.rainbow("hello wolrd"));
-  console.log(app.getPath("desktop"));
-  console.log(app.getPath("music"));
-  console.log(app.getPath("temp"));
-  console.log(app.getPath("userData"));
-});
+app.on("ready", createWindow);
 
 //Quit when all windows are closed -(Not macOS -Darwin)
 app.on("window-all-closed", () => {
