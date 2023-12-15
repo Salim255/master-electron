@@ -51,3 +51,5 @@
 - We configure this BrowserWindow with a couple of parameters, like (window height and width), then by (webPreferences, we can tell electron that we do want nodejs integrated into the Render Process, and this by setting {noeIntegrated: true} on the browserWindow wep content, so this can give access to nodejs from our BrowserWindow, for things like 'require...')
 - Then once we created that BrowserWindow, we can load html file into that Chromium browser window , and that by calling (loadFile('html file to load'))
 - Showing window gracefully by using ( ready-to-show event ) this will hide the window to all it's content is loaded
+
+# Create child and parent electron window
