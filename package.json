@@ -1,0 +1,27 @@
+{
+  "name": "master-electron",
+  "version": "1.0.0",
+  "description": "Master Electron",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^28.0.0",
+    "nodemon": "^3.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron .",
+    "watch": "nodemon --exec electron .",
+    "reset": "git reset --hard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salim255/master-electron.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Salim255/master-electron/issues"
+  },
+  "homepage": "https://github.com/Salim255/master-electron#readme"
+}
