@@ -55,3 +55,7 @@
 # Frameless BrowserWindow instances
 
 - Its useful to deal with window user interface(close bar...)
+
+# BrowserWindow Properties and Methods & Events
+
+- Events like, show, hide, focus, blur, getAllWindow, getFocusWindow ...
