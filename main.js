@@ -67,12 +67,14 @@ function createWindow() {
 
   //This event meant that the document object module of the HTML been loaded , is ready, we might have unloaded images ..., but the structure is ready to be interacted with
   wc.on("dom-ready", () => {
-    //This will run even if the images not fully loaded////
+    //This will run even if the images not fully loaded//////
     console.log("Dom ready 🍎🍎");
   });
 
-  wc.on("new-window", (e, irl) => {
-    console.log(`Creating new window for: ${url}`);
+  wc.on("did-attach-webview", (event, wc) => {
+    event.preventDefault();
+    //This will prevent form opening the url in a new browser window
+    console.log(`Creating new window for:`, event, wc);
   });
   //Listen for window being closed
   mainWindow.on("closed", () => {
