@@ -60,6 +60,15 @@ function createWindow() {
   let wc = mainWindow.webContents;
   //console.log(webContents.getAllWebContents(), "Hello web content");
 
+  wc.on("context-menu", (e, params) => {
+    console.log(
+      `Context menu opened on: ${params.mediaType} at x: ${params.x}, y: ${params.y}`
+    );
+    //
+    console.log(`User selected text: ${params.selectionText}`);
+    console.log(`Selection can be copied: ${params.editFlags.canCopy}`);
+  });
+
   wc.on("media-started-playing", () => {
     console.log("Video Starting...");
   });
