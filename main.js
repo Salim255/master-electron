@@ -35,8 +35,8 @@ function createWindow() {
   });
 
   //Load index.html into the new BrowserWindow
-  //mainWindow.loadFile("./index.html");
-  mainWindow.loadURL("https://httpbin.org/basic-auth/user/password");
+  mainWindow.loadFile("./index.html");
+  // mainWindow.loadURL("https://httpbin.org/basic-auth/user/passwd");
   secondaryWindow.loadFile("./secondaryIndex.html");
   //Show mainWindow when it's ready to show
   // mainWindow.once("ready-to-show", mainWindow.shadow);
@@ -60,7 +60,15 @@ function createWindow() {
   let wc = mainWindow.webContents;
   //console.log(webContents.getAllWebContents(), "Hello web content");
 
-  wc.on("login", (request, authInfo, callback) => {
+  wc.on("media-started-playing", () => {
+    console.log("Video Starting...");
+  });
+
+  wc.on("media-paused", () => {
+    console.log("Video paused...");
+  });
+
+  /* wc.on("login", (request, authInfo, callback) => {
     console.log("Logging in:");
     callback("user", "passwd");
   });
@@ -69,7 +77,7 @@ function createWindow() {
     console.log(`Navigate to: ${url}`);
     console.log(statusCode);
   });
-
+ */
   //This event means, all our content is ready
   wc.on("did-finish-load", () => {
     //This will fire only when all the content are already loaded, including images
