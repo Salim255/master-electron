@@ -59,3 +59,8 @@
 # BrowserWindow Properties and Methods & Events
 
 - Events like, show, hide, focus, blur, getAllWindow, getFocusWindow ...
+
+# BrowserWindow: Window State
+
+- To add window state management, we need to install :
+- npm install --save electron-window-state; so it's a library to store and restore window size and position for our Electron app

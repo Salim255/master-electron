@@ -1,19 +1,28 @@
 const { app, BrowserWindow } = require("electron");
 const colors = require("colors");
+const windowStateKeeper = require("electron-window-state");
 
 //Keep a global reference of the window object, if you don't, the window will be closed automatically when yhe JavaScript object is garbage collected.
 let mainWindow, secondaryWindow;
 
 //Create a new BrowserWindow when 'app' is ready
 function createWindow() {
+  //Create state manager
+  let winState = windowStateKeeper({
+    defaultWidth: 1000,
+    defaultHeight: 800,
+  });
+
   mainWindow = new BrowserWindow({
-    width: 1600,
-    height: 800,
+    width: winState.defaultWidth,
+    height: winState.defaultHeight,
+    x: winState.x, //x,y, to tell where to create this window (mainWindow)
+    y: winState.y, //We don't need to specify this x, y in winState contractor
     minWidth: 300,
     minHeight: 150,
     webPreferences: { nodeIntegration: true },
     backgroundColor: "red",
-    frame: false,
+    //frame: false,
   });
 
   secondaryWindow = new BrowserWindow({
@@ -42,6 +51,10 @@ function createWindow() {
       secondaryWindow = null;
     }, 2000);
   }, 2000);
+
+  // Tell windState, which window state should be stored
+  winState.manage(mainWindow);
+
   //Listen for window being closed
   mainWindow.on("closed", () => {
     //debugger;
