@@ -67,6 +67,11 @@ function createWindow() {
     //
     console.log(`User selected text: ${params.selectionText}`);
     console.log(`Selection can be copied: ${params.editFlags.canCopy}`);
+    //
+
+    let selectedText = params.selectionText;
+
+    wc.executeJavaScript(`alert("${selectedText}")`);
   });
 
   wc.on("media-started-playing", () => {
