@@ -76,6 +76,11 @@ function createWindow() {
     //This will prevent form opening the url in a new browser window
     console.log(`Creating new window for:`, event, wc);
   });
+
+  wc.on("before-input-event", (e, input) => {
+    console.log(`${input.key} : ${input.type}`);
+  });
+
   //Listen for window being closed
   mainWindow.on("closed", () => {
     //debugger;
