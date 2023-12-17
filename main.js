@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, webContents } = require("electron");
 const colors = require("colors");
 const windowStateKeeper = require("electron-window-state");
 
@@ -16,8 +16,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: winState.defaultWidth,
     height: winState.defaultHeight,
-    x: winState.x, //x,y, to tell where to create this window (mainWindow)
-    y: winState.y, //We don't need to specify this x, y in winState contractor
+    x: 100, //x,y, to tell where to create this window (mainWindow)
+    y: 100,
     minWidth: 300,
     minHeight: 150,
     webPreferences: { nodeIntegration: true },
@@ -55,6 +55,25 @@ function createWindow() {
   // Tell windState, which window state should be stored
   winState.manage(mainWindow);
 
+  //
+  let wc = mainWindow.webContents;
+  //console.log(webContents.getAllWebContents(), "Hello web content");
+
+  //This event means, all our content is ready
+  wc.on("did-finish-load", () => {
+    //This will fire only when all the content are already loaded, including images
+    console.log("Content fully loaded 🍎🍎");
+  });
+
+  //This event meant that the document object module of the HTML been loaded , is ready, we might have unloaded images ..., but the structure is ready to be interacted with
+  wc.on("dom-ready", () => {
+    //This will run even if the images not fully loaded////
+    console.log("Dom ready 🍎🍎");
+  });
+
+  wc.on("new-window", (e, irl) => {
+    console.log(`Creating new window for: ${url}`);
+  });
   //Listen for window being closed
   mainWindow.on("closed", () => {
     //debugger;

@@ -64,3 +64,11 @@
 
 - To add window state management, we need to install :
 - npm install --save electron-window-state; so it's a library to store and restore window size and position for our Electron app
+
+# BrowserWindow: webContents(module)
+
+- BrowserWindow web content represent a content loaded into the browserWindow
+
+## webContents Events
+
+-
