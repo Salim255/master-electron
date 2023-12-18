@@ -71,4 +71,13 @@
 
 ## webContents Events
 
--
+# Session: Getting Started
+
+## Electron Session module:
+
+- The concept of session in an electron app is quite often misunderstood.
+- Essentially a session is an object used for storing any sort of state data related to the web contents of a browser window, this include the Http cache cookies, web storages such as local storage or IndexedDB and so on.
+- A session being a requirement for any browser window instance created in an electron app.
+- Then meaning by default, electron creates a session for us which is shared between all browsers, the session being referred to as the default session.
+- To see the default session we can access it directly on our main windows web contents.
+- To recap, a session is the store of any web contents data. Meaning if we add an entry to local storage in this browser window,that will be part of the current session and get stored in the default session being used by main window.

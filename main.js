@@ -1,4 +1,4 @@
-const { app, BrowserWindow, webContents } = require("electron");
+const { app, BrowserWindow, session } = require("electron");
 const colors = require("colors");
 const windowStateKeeper = require("electron-window-state");
 
@@ -34,6 +34,11 @@ function createWindow() {
     show: false,
   });
 
+  let ses = mainWindow.webContents.session;
+  let defaultSes = session.defaultSession;
+  console.log("====================================");
+  console.log(Object.is(defaultSes, ses), defaultSes, ses);
+  console.log("====================================");
   //Load index.html into the new BrowserWindow
   mainWindow.loadFile("./index.html");
   // mainWindow.loadURL("https://httpbin.org/basic-auth/user/passwd");
@@ -41,7 +46,7 @@ function createWindow() {
   //Show mainWindow when it's ready to show
   // mainWindow.once("ready-to-show", mainWindow.shadow);
   //Open DevTools - Remove for PROD!
-  //mainWindow.openDevTools();
+  mainWindow.openDevTools();
 
   setTimeout(() => {
     secondaryWindow.show();
