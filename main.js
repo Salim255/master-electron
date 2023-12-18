@@ -7,6 +7,8 @@ let mainWindow, secondaryWindow;
 
 //Create a new BrowserWindow when 'app' is ready
 function createWindow() {
+  //Think of a partition then as a unit of storage, much like a hard drive partition. In this case we creating such a partition to be used for our session objects data
+  let customSes = session.fromPartition("persist:part1");
   //Create state manager
   let winState = windowStateKeeper({
     defaultWidth: 1000,
@@ -24,31 +26,39 @@ function createWindow() {
     backgroundColor: "red",
     //frame: false,
   });
-
-  secondaryWindow = new BrowserWindow({
+  secWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    x: 200,
+    y: 200,
+    webPreferences: { nodeIntegration: true, session: customSes },
+  });
+  /*  secondaryWindow = new BrowserWindow({
     width: 900,
     height: 500,
     webPreferences: { nodeIntegration: true },
     parent: mainWindow,
     modal: true,
     show: false,
-  });
+  }); */
 
   let ses = mainWindow.webContents.session;
   let defaultSes = session.defaultSession;
   console.log("====================================");
-  console.log(Object.is(defaultSes, ses), defaultSes, ses);
+  console.log(Object.is(customSes, ses), defaultSes, ses);
   console.log("====================================");
   //Load index.html into the new BrowserWindow
   mainWindow.loadFile("./index.html");
+  secWindow.loadFile("./index.html");
   // mainWindow.loadURL("https://httpbin.org/basic-auth/user/passwd");
-  secondaryWindow.loadFile("./secondaryIndex.html");
+  //secondaryWindow.loadFile("./secondaryIndex.html");
   //Show mainWindow when it's ready to show
   // mainWindow.once("ready-to-show", mainWindow.shadow);
   //Open DevTools - Remove for PROD!
   mainWindow.openDevTools();
+  secWindow.openDevTools();
 
-  setTimeout(() => {
+  /*   setTimeout(() => {
     secondaryWindow.show();
     setTimeout(() => {
       //secondaryWindow.hide();
@@ -56,7 +66,7 @@ function createWindow() {
       secondaryWindow.close();
       secondaryWindow = null;
     }, 2000);
-  }, 2000);
+  }, 2000); */
 
   // Tell windState, which window state should be stored
   winState.manage(mainWindow);

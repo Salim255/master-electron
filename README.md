@@ -81,3 +81,20 @@
 - Then meaning by default, electron creates a session for us which is shared between all browsers, the session being referred to as the default session.
 - To see the default session we can access it directly on our main windows web contents.
 - To recap, a session is the store of any web contents data. Meaning if we add an entry to local storage in this browser window,that will be part of the current session and get stored in the default session being used by main window.
+
+### Custom Session:
+
+- A custom session have a number of uses.
+- The most common being the ability to get such a session from an external source and have the app contents in the same state as second instance of te app. Think of syncing an app between multiple devices.
+
+## Session partition:
+
+- So there are two types of partitions for storing sessions:
+
+### Persisted Partition
+
+- Meaning saved to disk, like default session uses a persisted partition by default
+
+### Memory Partition
+
+- Are only stored in memory and does not get persisted between app restarts,
