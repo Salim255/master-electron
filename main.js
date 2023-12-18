@@ -8,7 +8,7 @@ let mainWindow, secondaryWindow;
 //Create a new BrowserWindow when 'app' is ready
 function createWindow() {
   //Think of a partition then as a unit of storage, much like a hard drive partition. In this case we creating such a partition to be used for our session objects data
-  let customSes = session.fromPartition("persist:part1");
+  //let customSes = session.fromPartition("persist:part1");
   //Create state manager
   let winState = windowStateKeeper({
     defaultWidth: 1000,
@@ -31,7 +31,7 @@ function createWindow() {
     height: 600,
     x: 200,
     y: 200,
-    webPreferences: { nodeIntegration: true, session: customSes },
+    webPreferences: { nodeIntegration: true, partition: "persist:part1" },
   });
   /*  secondaryWindow = new BrowserWindow({
     width: 900,
@@ -44,8 +44,10 @@ function createWindow() {
 
   let ses = mainWindow.webContents.session;
   let defaultSes = session.defaultSession;
+
+  ses.clearStorageData(); //cookies, local storage, indexddb or event sevviceworkers
   console.log("====================================");
-  console.log(Object.is(customSes, ses), defaultSes, ses);
+  //console.log(Object.is(customSes, ses), defaultSes, ses);
   console.log("====================================");
   //Load index.html into the new BrowserWindow
   mainWindow.loadFile("./index.html");
